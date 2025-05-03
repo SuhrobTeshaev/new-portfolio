@@ -13,28 +13,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Calendar, Clock, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useBlogPosts, BlogPost } from "@/hooks/useBlogPosts";
 
-interface BlogPost {
-  id: number;
-  title: {
-    en: string;
-    ru: string;
-  };
-  excerpt: {
-    en: string;
-    ru: string;
-  };
-  content: {
-    en: string;
-    ru: string;
-  };
-  imageUrl: string;
-  date: string;
-  readTime: number;
-  author: string;
-  slug: string;
-}
-
+/* Replaced with useBlogPosts hook
 const blogPosts: BlogPost[] = [
   {
     id: 1,
@@ -100,10 +81,12 @@ const blogPosts: BlogPost[] = [
     slug: "modern-state-management-react",
   },
 ];
+*/
 
 export default function BlogPage() {
   const { language } = useContext(LanguageContext);
   const t = translations[language];
+  const { posts: blogPosts } = useBlogPosts();
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);

@@ -1,4 +1,60 @@
-d=CB&backgroundColor=6366f1",
+import { useContext } from "react";
+import { LanguageContext } from "@/contexts/LanguageContext";
+import { translations } from "@/lib/translations";
+import { Button } from "@/components/ui/button";
+import { FileDown } from "lucide-react";
+import { motion } from "framer-motion";
+
+export default function AboutPage() {
+  const { language } = useContext(LanguageContext);
+  const t = translations[language];
+
+  // Experience data
+  const experiences = [
+    {
+      position:
+        language === "en"
+          ? "Senior Frontend Developer"
+          : "Старший Frontend-разработчик",
+      company:
+        language === "en" ? "Tech Solutions Inc." : "Tech Solutions Inc.",
+      period: "2021 - Present",
+      description:
+        language === "en"
+          ? "Led the development of multiple React applications, implemented state management solutions, and mentored junior developers."
+          : "Руководил разработкой нескольких приложений на React, внедрял решения для управления состоянием и наставлял младших разработчиков.",
+    },
+    {
+      position:
+        language === "en" ? "Full-stack Developer" : "Full-stack разработчик",
+      company: language === "en" ? "WebCraft Studio" : "WebCraft Studio",
+      period: "2018 - 2021",
+      description:
+        language === "en"
+          ? "Developed and maintained web applications using React for frontend and Laravel for backend. Implemented RESTful APIs and database solutions."
+          : "Разрабатывал и поддерживал веб-приложения, используя React для фронтенда и Laravel для бэкенда. Реализовывал RESTful API и решения для баз данных.",
+    },
+    {
+      position:
+        language === "en" ? "Junior Web Developer" : "Младший веб-разработчик",
+      company: language === "en" ? "Digital Creations" : "Digital Creations",
+      period: "2016 - 2018",
+      description:
+        language === "en"
+          ? "Worked on frontend development using HTML, CSS, and JavaScript. Assisted in the development of responsive websites and web applications."
+          : "Работал над фронтенд-разработкой с использованием HTML, CSS и JavaScript. Помогал в разработке адаптивных веб-сайтов и веб-приложений.",
+    },
+  ];
+
+  // Companies data
+  const companies = [
+    {
+      name: "Company A",
+      logo: "https://api.dicebear.com/7.x/initials/svg?seed=CA&backgroundColor=3b82f6",
+    },
+    {
+      name: "Company B",
+      logo: "https://api.dicebear.com/7.x/initials/svg?seed=CB&backgroundColor=6366f1",
     },
     {
       name: "Company C",
@@ -57,7 +113,14 @@ d=CB&backgroundColor=6366f1",
           </h2>
           <div className="mt-10 grid gap-8">
             {experiences.map((exp, index) => (
-              <div key={index} className="rounded-lg bg-card p-6 shadow-sm">
+              <motion.div
+                key={index}
+                className="rounded-lg bg-card p-6 shadow-sm"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
                 <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                   <div>
                     <h3 className="text-xl font-semibold">{exp.position}</h3>
@@ -68,7 +131,7 @@ d=CB&backgroundColor=6366f1",
                   </div>
                 </div>
                 <p className="mt-4">{exp.description}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -82,9 +145,14 @@ d=CB&backgroundColor=6366f1",
           </h2>
           <div className="mt-10 grid grid-cols-2 gap-8 sm:grid-cols-4">
             {companies.map((company, index) => (
-              <div
+              <motion.div
                 key={index}
                 className="flex flex-col items-center justify-center rounded-lg bg-card p-6 shadow-sm"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
               >
                 <img
                   src={company.logo}
@@ -92,7 +160,7 @@ d=CB&backgroundColor=6366f1",
                   className="h-16 w-16 rounded-full"
                 />
                 <p className="mt-4 font-medium">{company.name}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

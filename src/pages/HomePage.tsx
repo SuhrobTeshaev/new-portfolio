@@ -4,11 +4,23 @@ import { LanguageContext } from "@/contexts/LanguageContext";
 import { translations } from "@/lib/translations";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Code, Database, Layout } from "lucide-react";
+import {
+  ArrowRight,
+  Calendar,
+  Clock,
+  Code,
+  Database,
+  Layout,
+  Lightbulb,
+  BookOpen,
+  Sparkles,
+} from "lucide-react";
+import { useBlogPosts, BlogPost } from "@/hooks/useBlogPosts";
 
 export default function HomePage() {
   const { language } = useContext(LanguageContext);
   const t = translations[language];
+  const { getLatestPosts, getBeginnerPosts, getAIPosts } = useBlogPosts();
 
   const techStack = [
     { name: "React", icon: <Code className="h-6 w-6" /> },
@@ -175,6 +187,281 @@ export default function HomePage() {
                 {language === "en"
                   ? "View All Projects"
                   : "Посмотреть все проекты"}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Blog Posts Section */}
+      <section className="py-16 md:py-24">
+        <div className="container max-w-screen-xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <motion.h2
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-3xl font-bold tracking-tight sm:text-4xl"
+            >
+              {language === "en" ? "Latest Articles" : "Последние статьи"}
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="mt-4 text-muted-foreground"
+            >
+              {language === "en"
+                ? "Thoughts and insights about web development"
+                : "Мысли и идеи о веб-разработке"}
+            </motion.p>
+          </div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mt-10 grid gap-8 md:grid-cols-3"
+          >
+            {getLatestPosts(3).map((post) => (
+              <motion.div key={post.id} variants={itemVariants}>
+                <div className="group h-full overflow-hidden rounded-lg bg-card shadow-sm transition-all hover:shadow-md">
+                  <div className="aspect-video overflow-hidden">
+                    <img
+                      src={post.imageUrl}
+                      alt={post.title[language]}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="line-clamp-2 text-xl font-semibold">
+                      {post.title[language]}
+                    </h3>
+                    <div className="mt-2 flex items-center gap-4 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-4 w-4" />
+                        {new Date(post.date).toLocaleDateString(
+                          language === "en" ? "en-US" : "ru-RU",
+                          { year: "numeric", month: "short", day: "numeric" },
+                        )}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-4 w-4" />
+                        {post.readTime}{" "}
+                        {language === "en" ? "min read" : "мин чтения"}
+                      </div>
+                    </div>
+                    <p className="mt-3 line-clamp-2 text-muted-foreground">
+                      {post.excerpt[language]}
+                    </p>
+                    <div className="mt-4">
+                      <Button asChild variant="outline" size="sm">
+                        <Link to={`/blog/${post.slug}`}>
+                          {language === "en" ? "Read More" : "Читать далее"}
+                          <ArrowRight className="ml-1 h-3 w-3" />
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <div className="mt-10 text-center">
+            <Button asChild variant="outline" size="lg">
+              <Link to="/blog">
+                {language === "en" ? "View All Articles" : "Все статьи"}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+      {/* For Beginners Section */}
+      <section className="bg-muted/30 py-16 md:py-24">
+        <div className="container max-w-screen-xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <motion.h2
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-3xl font-bold tracking-tight sm:text-4xl"
+            >
+              {language === "en"
+                ? "For New Developers"
+                : "Для новых разработчиков"}
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="mt-4 text-muted-foreground"
+            >
+              {language === "en"
+                ? "Simple steps to start your development journey"
+                : "Простые шаги для начала вашего пути в разработке"}
+            </motion.p>
+          </div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mt-10 grid gap-8 md:grid-cols-3"
+          >
+            {getBeginnerPosts(language, 3).map((post) => (
+              <motion.div key={post.id} variants={itemVariants}>
+                <div className="group h-full overflow-hidden rounded-lg bg-card shadow-sm transition-all hover:shadow-md">
+                  <div className="aspect-video overflow-hidden">
+                    <img
+                      src={post.imageUrl}
+                      alt={post.title[language]}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <div className="mb-3 flex items-center gap-2">
+                      <BookOpen className="h-5 w-5 text-primary" />
+                      <span className="text-sm font-medium text-primary">
+                        {language === "en"
+                          ? "Beginner Friendly"
+                          : "Для начинающих"}
+                      </span>
+                    </div>
+                    <h3 className="line-clamp-2 text-xl font-semibold">
+                      {post.title[language]}
+                    </h3>
+                    <div className="mt-2 flex items-center gap-4 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-4 w-4" />
+                        {new Date(post.date).toLocaleDateString(
+                          language === "en" ? "en-US" : "ru-RU",
+                          { year: "numeric", month: "short", day: "numeric" },
+                        )}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-4 w-4" />
+                        {post.readTime}{" "}
+                        {language === "en" ? "min read" : "мин чтения"}
+                      </div>
+                    </div>
+                    <p className="mt-3 line-clamp-2 text-muted-foreground">
+                      {post.excerpt[language]}
+                    </p>
+                    <div className="mt-4">
+                      <Button asChild variant="outline" size="sm">
+                        <Link to={`/blog/${post.slug}`}>
+                          {language === "en" ? "Read More" : "Читать далее"}
+                          <ArrowRight className="ml-1 h-3 w-3" />
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* AI for Developers Section */}
+      <section className="py-16 md:py-24">
+        <div className="container max-w-screen-xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <motion.h2
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-3xl font-bold tracking-tight sm:text-4xl"
+            >
+              {language === "en" ? "AI for Developers" : "ИИ для разработчиков"}
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="mt-4 text-muted-foreground"
+            >
+              {language === "en"
+                ? "Explore new AI possibilities for frontend development"
+                : "Изучите новые возможности ИИ для фронтенд-разработки"}
+            </motion.p>
+          </div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mt-10 grid gap-8 md:grid-cols-3"
+          >
+            {getAIPosts(language, 3).map((post) => (
+              <motion.div key={post.id} variants={itemVariants}>
+                <div className="group h-full overflow-hidden rounded-lg bg-card shadow-sm transition-all hover:shadow-md">
+                  <div className="aspect-video overflow-hidden">
+                    <img
+                      src={post.imageUrl}
+                      alt={post.title[language]}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <div className="mb-3 flex items-center gap-2">
+                      <Sparkles className="h-5 w-5 text-primary" />
+                      <span className="text-sm font-medium text-primary">
+                        {language === "en" ? "AI Technology" : "ИИ Технологии"}
+                      </span>
+                    </div>
+                    <h3 className="line-clamp-2 text-xl font-semibold">
+                      {post.title[language]}
+                    </h3>
+                    <div className="mt-2 flex items-center gap-4 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-4 w-4" />
+                        {new Date(post.date).toLocaleDateString(
+                          language === "en" ? "en-US" : "ru-RU",
+                          { year: "numeric", month: "short", day: "numeric" },
+                        )}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-4 w-4" />
+                        {post.readTime}{" "}
+                        {language === "en" ? "min read" : "мин чтения"}
+                      </div>
+                    </div>
+                    <p className="mt-3 line-clamp-2 text-muted-foreground">
+                      {post.excerpt[language]}
+                    </p>
+                    <div className="mt-4">
+                      <Button asChild variant="outline" size="sm">
+                        <Link to={`/blog/${post.slug}`}>
+                          {language === "en" ? "Read More" : "Читать далее"}
+                          <ArrowRight className="ml-1 h-3 w-3" />
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <div className="mt-10 text-center">
+            <Button asChild variant="outline" size="lg">
+              <Link to="/blog">
+                {language === "en"
+                  ? "Explore All AI Articles"
+                  : "Изучить все статьи об ИИ"}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

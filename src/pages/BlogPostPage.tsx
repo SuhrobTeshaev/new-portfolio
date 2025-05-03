@@ -5,29 +5,10 @@ import { translations } from "@/lib/translations";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-interface BlogPost {
-  id: number;
-  title: {
-    en: string;
-    ru: string;
-  };
-  excerpt: {
-    en: string;
-    ru: string;
-  };
-  content: {
-    en: string;
-    ru: string;
-  };
-  imageUrl: string;
-  date: string;
-  readTime: number;
-  author: string;
-  slug: string;
-}
+import { useBlogPosts, BlogPost } from "@/hooks/useBlogPosts";
 
 // This would normally come from an API or database
+/* Replaced with useBlogPosts hook
 const blogPosts: BlogPost[] = [
   {
     id: 1,
@@ -383,6 +364,7 @@ function Counter() {
     slug: "modern-state-management-react",
   },
 ];
+*/
 
 export default function BlogPostPage() {
   const { language } = useContext(LanguageContext);
@@ -390,16 +372,17 @@ export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
+  const { posts } = useBlogPosts();
 
   useEffect(() => {
     // Simulate API call
     setLoading(true);
     setTimeout(() => {
-      const foundPost = blogPosts.find((p) => p.slug === slug);
+      const foundPost = posts.find((p) => p.slug === slug);
       setPost(foundPost || null);
       setLoading(false);
     }, 300);
-  }, [slug]);
+  }, [slug, posts]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);

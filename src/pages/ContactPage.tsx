@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { LanguageContext } from "@/contexts/LanguageContext";
 import { translations } from "@/lib/translations";
-import { Github, Linkedin, Mail, MessageSquare } from "lucide-react";
+import { Github, Linkedin, Mail, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -49,7 +49,7 @@ export default function ContactPage() {
     },
     {
       name: "Telegram",
-      icon: <MessageSquare className="h-6 w-6" />,
+      icon: <Send className="h-6 w-6" />,
       url: "https://t.me/username",
       color: "bg-blue-400 dark:bg-blue-500",
     },
