@@ -19,6 +19,10 @@ interface ProjectCardProps {
   tags: string[];
   liveUrl?: string;
   githubUrl?: string;
+  role?: string;
+  goals?: string;
+  problems?: string;
+  achievements?: string;
 }
 
 export default function ProjectCard({
@@ -28,6 +32,10 @@ export default function ProjectCard({
   tags = ["React", "TypeScript", "Tailwind"],
   liveUrl,
   githubUrl,
+  role = "Frontend Developer",
+  goals = "Create a responsive web application with modern UI/UX",
+  problems = "Optimizing performance and ensuring cross-browser compatibility",
+  achievements = "Improved load time by 40% and increased user engagement",
 }: ProjectCardProps) {
   const { language } = useContext(LanguageContext);
   const t = translations[language];
@@ -56,9 +64,39 @@ export default function ProjectCard({
         </div>
       </CardHeader>
       <CardContent>
-        <CardDescription className="text-sm text-muted-foreground">
+        <CardDescription className="text-sm text-muted-foreground mb-4">
           {description}
         </CardDescription>
+
+        <div className="space-y-3 mt-4 text-sm">
+          <div>
+            <span className="font-semibold">
+              {language === "en" ? "My Role: " : "Моя роль: "}
+            </span>
+            <span>{role}</span>
+          </div>
+
+          <div>
+            <span className="font-semibold">
+              {language === "en" ? "Project Goals: " : "Цели проекта: "}
+            </span>
+            <span>{goals}</span>
+          </div>
+
+          <div>
+            <span className="font-semibold">
+              {language === "en" ? "Problems Solved: " : "Решенные проблемы: "}
+            </span>
+            <span>{problems}</span>
+          </div>
+
+          <div>
+            <span className="font-semibold">
+              {language === "en" ? "Achievements: " : "Достижения: "}
+            </span>
+            <span>{achievements}</span>
+          </div>
+        </div>
       </CardContent>
       <CardFooter className="flex gap-2">
         {liveUrl && (

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Language } from "@/contexts/LanguageContext";
+import { BlogService } from "@/services/blogService";
 
 export interface BlogPost {
   id: number;
@@ -159,22 +160,18 @@ export const useBlogPosts = () => {
     },
   ]);
 
-  // In a real application, you would fetch posts from an API
-  // This is a placeholder for that functionality
+  // Fetch posts from our blog service
   useEffect(() => {
-    // Simulating API fetch
-    // In a real app, replace with actual API call:
-    // const fetchPosts = async () => {
-    //   try {
-    //     const response = await fetch('https://api.example.com/posts');
-    //     const data = await response.json();
-    //     setPosts(data);
-    //   } catch (error) {
-    //     console.error('Error fetching blog posts:', error);
-    //   }
-    // };
-    //
-    // fetchPosts();
+    const fetchPosts = async () => {
+      try {
+        const data = await BlogService.getAllPosts();
+        setPosts(data);
+      } catch (error) {
+        console.error("Error fetching blog posts:", error);
+      }
+    };
+
+    fetchPosts();
   }, []);
 
   const getPostsByTag = (tag: string, language: Language) => {

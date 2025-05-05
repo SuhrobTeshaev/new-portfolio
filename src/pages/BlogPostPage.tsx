@@ -366,10 +366,15 @@ function Counter() {
 ];
 */
 
-export default function BlogPostPage() {
+interface BlogPostPageProps {
+  mockParams?: { slug: string };
+}
+
+export default function BlogPostPage({ mockParams }: BlogPostPageProps = {}) {
   const { language } = useContext(LanguageContext);
   const t = translations[language];
-  const { slug } = useParams<{ slug: string }>();
+  const params = mockParams || useParams<{ slug: string }>();
+  const slug = params?.slug;
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const { posts } = useBlogPosts();

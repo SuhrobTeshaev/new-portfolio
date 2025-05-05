@@ -137,8 +137,342 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Companies Section */}
+      {/* T-Shape Skills Section */}
+      <section className="py-16 bg-muted/30 md:py-24">
+        <div className="container max-w-screen-xl">
+          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+            {language === "en" ? "T-Shape Skills" : "T-образные навыки"}
+          </h2>
+          <p className="mt-4 text-muted-foreground">
+            {language === "en"
+              ? "Deep expertise in frontend development with broad knowledge in related areas"
+              : "Глубокая экспертиза в frontend-разработке с широкими знаниями в смежных областях"}
+          </p>
+
+          <div className="mt-10">
+            {/* Primary Skills - The vertical bar of the T */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="mb-12"
+            >
+              <h3 className="text-xl font-semibold mb-4">
+                {language === "en"
+                  ? "Primary Expertise"
+                  : "Основная экспертиза"}
+              </h3>
+              <div className="bg-primary/10 p-6 rounded-lg">
+                <h4 className="text-lg font-medium text-primary mb-3">
+                  {language === "en"
+                    ? "Frontend Development"
+                    : "Frontend-разработка"}
+                </h4>
+                <p className="mb-4">
+                  {language === "en"
+                    ? "Deep expertise in building modern, responsive, and performant web applications using React, TypeScript, and modern CSS frameworks."
+                    : "Глубокая экспертиза в создании современных, адаптивных и производительных веб-приложений с использованием React, TypeScript и современных CSS-фреймворков."}
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  {[
+                    "React",
+                    "TypeScript",
+                    "Next.js",
+                    "Redux",
+                    "Tailwind CSS",
+                    "CSS/SCSS",
+                    "HTML5",
+                    "JavaScript",
+                  ].map((skill, index) => (
+                    <motion.div
+                      key={skill}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      className="bg-card p-3 rounded-md text-center shadow-sm"
+                    >
+                      {skill}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Secondary Skills - The horizontal bar of the T */}
+            <h3 className="text-xl font-semibold mb-4">
+              {language === "en"
+                ? "Supporting Knowledge"
+                : "Дополнительные знания"}
+            </h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* Backend */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="bg-card p-6 rounded-lg shadow-sm"
+              >
+                <h4 className="text-lg font-medium mb-3">
+                  {language === "en"
+                    ? "Backend Development"
+                    : "Backend-разработка"}
+                </h4>
+                <p className="text-sm text-muted-foreground mb-4">
+                  {language === "en"
+                    ? "Understanding of server-side programming and API development"
+                    : "Понимание серверного программирования и разработки API"}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "Laravel",
+                    "Node.js",
+                    "Express",
+                    "RESTful APIs",
+                    "MySQL",
+                  ].map((skill) => (
+                    <span
+                      key={skill}
+                      className="inline-flex items-center rounded-full bg-secondary/10 px-2.5 py-0.5 text-xs font-medium text-secondary"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Design */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="bg-card p-6 rounded-lg shadow-sm"
+              >
+                <h4 className="text-lg font-medium mb-3">
+                  {language === "en" ? "UI/UX Design" : "UI/UX дизайн"}
+                </h4>
+                <p className="text-sm text-muted-foreground mb-4">
+                  {language === "en"
+                    ? "Ability to create visually appealing and user-friendly interfaces"
+                    : "Способность создавать визуально привлекательные и удобные интерфейсы"}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "Figma",
+                    "Adobe XD",
+                    "Responsive Design",
+                    "Wireframing",
+                    "Prototyping",
+                  ].map((skill) => (
+                    <span
+                      key={skill}
+                      className="inline-flex items-center rounded-full bg-secondary/10 px-2.5 py-0.5 text-xs font-medium text-secondary"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Testing */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="bg-card p-6 rounded-lg shadow-sm"
+              >
+                <h4 className="text-lg font-medium mb-3">
+                  {language === "en"
+                    ? "Testing & DevOps"
+                    : "Тестирование и DevOps"}
+                </h4>
+                <p className="text-sm text-muted-foreground mb-4">
+                  {language === "en"
+                    ? "Knowledge of testing methodologies and deployment processes"
+                    : "Знание методологий тестирования и процессов развертывания"}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "Jest",
+                    "React Testing Library",
+                    "Git",
+                    "CI/CD",
+                    "Docker",
+                  ].map((skill) => (
+                    <span
+                      key={skill}
+                      className="inline-flex items-center rounded-full bg-secondary/10 px-2.5 py-0.5 text-xs font-medium text-secondary"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Soft Skills Section */}
       <section className="py-16 md:py-24">
+        <div className="container max-w-screen-xl">
+          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+            {language === "en" ? "Soft Skills" : "Гибкие навыки"}
+          </h2>
+          <p className="mt-4 text-muted-foreground">
+            {language === "en"
+              ? "Professional qualities valued in global work environments"
+              : "Профессиональные качества, ценимые в глобальной рабочей среде"}
+          </p>
+
+          <div className="mt-10 grid md:grid-cols-3 gap-8">
+            {/* European Work Culture */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="bg-card p-6 rounded-lg shadow-sm"
+            >
+              <h3 className="text-xl font-semibold mb-4">
+                {language === "en"
+                  ? "European Work Culture"
+                  : "Европейская рабочая культура"}
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  language === "en"
+                    ? "Work-Life Balance"
+                    : "Баланс работы и личной жизни",
+                  language === "en"
+                    ? "Direct Communication"
+                    : "Прямая коммуникация",
+                  language === "en"
+                    ? "Autonomy & Independence"
+                    : "Автономия и независимость",
+                  language === "en"
+                    ? "Structured Problem Solving"
+                    : "Структурированное решение проблем",
+                  language === "en"
+                    ? "Precision & Attention to Detail"
+                    : "Точность и внимание к деталям",
+                ].map((skill, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-2"
+                  >
+                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                    <span>{skill}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* American Work Culture */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-card p-6 rounded-lg shadow-sm"
+            >
+              <h3 className="text-xl font-semibold mb-4">
+                {language === "en"
+                  ? "American Work Culture"
+                  : "Американская рабочая культура"}
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  language === "en"
+                    ? "Entrepreneurial Mindset"
+                    : "Предпринимательское мышление",
+                  language === "en"
+                    ? "Result-Oriented Approach"
+                    : "Ориентация на результат",
+                  language === "en"
+                    ? "Adaptability & Flexibility"
+                    : "Адаптивность и гибкость",
+                  language === "en"
+                    ? "Proactive Communication"
+                    : "Проактивная коммуникация",
+                  language === "en"
+                    ? "Leadership & Initiative"
+                    : "Лидерство и инициативность",
+                ].map((skill, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-2"
+                  >
+                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                    <span>{skill}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Asian Work Culture */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="bg-card p-6 rounded-lg shadow-sm"
+            >
+              <h3 className="text-xl font-semibold mb-4">
+                {language === "en"
+                  ? "Asian Work Culture"
+                  : "Азиатская рабочая культура"}
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  language === "en"
+                    ? "Team Harmony & Collaboration"
+                    : "Гармония в команде и сотрудничество",
+                  language === "en"
+                    ? "Respect for Hierarchy"
+                    : "Уважение к иерархии",
+                  language === "en"
+                    ? "Continuous Improvement"
+                    : "Непрерывное совершенствование",
+                  language === "en"
+                    ? "Diligence & Dedication"
+                    : "Усердие и преданность делу",
+                  language === "en"
+                    ? "Long-term Relationship Building"
+                    : "Построение долгосрочных отношений",
+                ].map((skill, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-2"
+                  >
+                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                    <span>{skill}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Companies Section */}
+      <section className="py-16 bg-muted/30 md:py-24">
         <div className="container max-w-screen-xl">
           <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
             {t.about.companiesTitle}
