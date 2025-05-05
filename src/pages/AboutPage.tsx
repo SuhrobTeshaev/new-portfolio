@@ -4,6 +4,7 @@ import { translations } from "@/lib/translations";
 import { Button } from "@/components/ui/button";
 import { FileDown } from "lucide-react";
 import { motion } from "framer-motion";
+import enResume from '../../public/SuhrobResume.pdf'
 
 export default function AboutPage() {
   const { language } = useContext(LanguageContext);
@@ -11,24 +12,24 @@ export default function AboutPage() {
 
   // Experience data
   const experiences = [
+    // {
+    //   position:
+    //     language === "en"
+    //       ? "Senior Frontend Developer"
+    //       : "Старший Frontend-разработчик",
+    //   company:
+    //     language === "en" ? "Tech Solutions Inc." : "Tech Solutions Inc.",
+    //   period: "2021 - Present",
+    //   description:
+    //     language === "en"
+    //       ? "Led the development of multiple React applications, implemented state management solutions, and mentored junior developers."
+    //       : "Руководил разработкой нескольких приложений на React, внедрял решения для управления состоянием и наставлял младших разработчиков.",
+    // },
     {
       position:
-        language === "en"
-          ? "Senior Frontend Developer"
-          : "Старший Frontend-разработчик",
-      company:
-        language === "en" ? "Tech Solutions Inc." : "Tech Solutions Inc.",
-      period: "2021 - Present",
-      description:
-        language === "en"
-          ? "Led the development of multiple React applications, implemented state management solutions, and mentored junior developers."
-          : "Руководил разработкой нескольких приложений на React, внедрял решения для управления состоянием и наставлял младших разработчиков.",
-    },
-    {
-      position:
-        language === "en" ? "Full-stack Developer" : "Full-stack разработчик",
-      company: language === "en" ? "WebCraft Studio" : "WebCraft Studio",
-      period: "2018 - 2021",
+        language === "en" ? "Software Engineer" : "Веб - разработчик",
+      company: language === "en" ? "Livo-dev" : "Livo-dev",
+      period: "March 2024 - present",
       description:
         language === "en"
           ? "Developed and maintained web applications using React for frontend and Laravel for backend. Implemented RESTful APIs and database solutions."
@@ -37,8 +38,8 @@ export default function AboutPage() {
     {
       position:
         language === "en" ? "Junior Web Developer" : "Младший веб-разработчик",
-      company: language === "en" ? "Digital Creations" : "Digital Creations",
-      period: "2016 - 2018",
+      company: language === "en" ? "WEB-studio BO/BO" : "WEB-studio BO/BO" ,
+      period: "January 2024 - March 2024",
       description:
         language === "en"
           ? "Worked on frontend development using HTML, CSS, and JavaScript. Assisted in the development of responsive websites and web applications."
@@ -83,7 +84,7 @@ export default function AboutPage() {
                 <Button asChild>
                   <a
                     href={
-                      language === "en" ? "/resume-en.pdf" : "/resume-ru.pdf"
+                      language === "en" ?  enResume  : "/resume-ru.pdf"
                     }
                     download
                     className="inline-flex items-center gap-2"

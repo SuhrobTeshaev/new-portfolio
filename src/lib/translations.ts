@@ -54,7 +54,7 @@ type Translations = {
 
 export const translations: Translations = {
   en: {
-    name: "John Doe",
+    name: "Suhrob Teshaev",
     nav: {
       home: "Home",
       about: "About",
@@ -70,7 +70,7 @@ export const translations: Translations = {
     },
     about: {
       title: "About Me",
-      bio: "I am a full-stack developer specializing in React for frontend and Laravel for backend development. With over 5 years of experience, I've worked on various projects ranging from small business websites to complex enterprise applications.",
+      bio: "I’m a frontend developer who transforms complex requirements into intuitive user interfaces. Specializing in React, Next.js, and TypeScript, I build scalable, high-performance applications with clean architecture. I focus on delivering real product value — not just writing code, but solving business problems. Passionate about maintainable UI, modern practices, and constant improvement, I bring both precision and care to every project.",
       experience: "Professional Experience",
       experienceTitle: "My Experience",
       companies: "Companies I've Worked With",
@@ -103,7 +103,7 @@ export const translations: Translations = {
     },
   },
   ru: {
-    name: "Иван Иванов",
+    name: "Сухроб Тешаев",
     nav: {
       home: "Главная",
       about: "Обо мне",
@@ -119,7 +119,7 @@ export const translations: Translations = {
     },
     about: {
       title: "Обо мне",
-      bio: "Я full-stack разработчик, специализирующийся на React для фронтенда и Laravel для бэкенда. С опытом более 5 лет, я работал над различными проектами от небольших бизнес-сайтов до сложных корпоративных приложений.",
+      bio: "Я — фронтенд-разработчик, который превращает сложные задачи в удобные интерфейсы. Специализируюсь на React, Next.js и TypeScript, строю стабильные, масштабируемые приложения с чистой архитектурой. Знаю, как ускорить проект, улучшить UX и наладить эффективную командную работу. Работаю по принципу: «не просто сверстать», а решить задачу продукта. Постоянно прокачиваю навыки, слежу за трендами, люблю понятный код и продуманные интерфейсы.",
       experience: "Профессиональный опыт",
       experienceTitle: "Мой опыт",
       companies: "Компании, с которыми я работал",
